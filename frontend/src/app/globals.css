@@ -25,6 +25,24 @@
     --ring: 239 84% 67%;
     --radius: 0.5rem;
   }
+
+  /* Auth pages: dark card theme */
+  .auth-card {
+    --background: 237 30% 10%;
+    --foreground: 210 40% 98%;
+    --card: 237 30% 10%;
+    --card-foreground: 210 40% 98%;
+    --popover: 237 30% 10%;
+    --popover-foreground: 210 40% 98%;
+    --border: 237 20% 22%;
+    --input: 237 25% 16%;
+    --muted: 237 20% 16%;
+    --muted-foreground: 215 20% 65%;
+    --secondary: 237 20% 16%;
+    --secondary-foreground: 210 40% 98%;
+    --accent: 237 30% 18%;
+    --accent-foreground: 210 40% 98%;
+  }
 }
 
 @layer base {
@@ -33,5 +51,12 @@
   }
   body {
     @apply bg-background text-foreground;
+  }
+  .auth-card input,
+  .auth-card textarea {
+    color: hsl(210 40% 98%);
+  }
+  .auth-card input::placeholder {
+    color: hsl(215 20% 50%);
   }
 }

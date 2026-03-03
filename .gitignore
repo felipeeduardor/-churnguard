@@ -1,0 +1,27 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+venv/
+.env
+*.egg-info/
+dist/
+build/
+
+# Node
+node_modules/
+.next/
+out/
+npm-debug.log*
+
+# Env files (secrets)
+.env.local
+.env.production
+.env*.local
+
+# Model files (optional: remover se quiser versionar)
+# backend/ml/*.pkl
+
+# OS
+.DS_Store
+Thumbs.db

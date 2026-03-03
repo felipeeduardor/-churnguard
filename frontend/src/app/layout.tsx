@@ -5,8 +5,8 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "ChurnGuard – Previsão de Churn",
-  description: "SaaS de previsão e gestão de churn para empresas",
+  title: "Loyalto – Transforme dados em lealdade",
+  description: "Plataforma de previsão de churn e retenção de clientes com IA",
 };
 
 export default function RootLayout({

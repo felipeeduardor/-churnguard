@@ -44,29 +44,22 @@ export default function RegisterPage() {
       return;
     }
 
-    // 2. Create organization
-    const { data: org, error: orgError } = await supabase
-      .from("organizations")
-      .insert({ name: orgName })
-      .select()
-      .single();
-
-    if (orgError) {
-      setError("Erro ao criar organização: " + orgError.message);
+    // 2. Sign in to establish session before creating org
+    const { error: signInError } = await supabase.auth.signInWithPassword({ email, password });
+    if (signInError) {
+      setError("Conta criada! Verifique seu e-mail para confirmar antes de entrar.");
       setLoading(false);
       return;
     }
 
-    // 3. Create profile
-    const { error: profileError } = await supabase.from("profiles").insert({
-      id: authData.user.id,
-      org_id: org.id,
-      name,
-      role: "admin",
+    // 3. Create org + profile via RPC (SECURITY DEFINER, bypasses RLS)
+    const { error: rpcError } = await supabase.rpc("register_organization", {
+      org_name: orgName,
+      user_name: name,
     });
 
-    if (profileError) {
-      setError("Erro ao criar perfil: " + profileError.message);
+    if (rpcError) {
+      setError("Erro ao configurar conta: " + rpcError.message);
       setLoading(false);
       return;
     }
@@ -75,11 +68,11 @@ export default function RegisterPage() {
   }
 
   return (
-    <Card className="w-full max-w-md mx-4">
+    <Card className="auth-card w-full max-w-md mx-4 border border-white/10 shadow-2xl shadow-indigo-900/40 backdrop-blur-sm">
       <CardHeader className="text-center">
         <div className="flex items-center justify-center gap-2 mb-4">
           <TrendingDown className="h-8 w-8 text-primary" />
-          <span className="text-2xl font-bold">ChurnGuard</span>
+          <span className="text-2xl font-bold">Loyalto</span>
         </div>
         <CardTitle>Criar conta</CardTitle>
         <CardDescription>Comece a monitorar o churn da sua empresa</CardDescription>

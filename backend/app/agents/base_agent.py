@@ -1,7 +1,18 @@
 import os
 import json
 import logging
+from pathlib import Path
 from groq import Groq
+
+# Load GROQ_API_KEY from .env if not already set in environment
+if not os.environ.get("GROQ_API_KEY"):
+    _env_file = Path(__file__).resolve().parent.parent.parent / ".env"
+    if _env_file.exists():
+        for _line in _env_file.read_text().splitlines():
+            _line = _line.strip()
+            if _line.startswith("GROQ_API_KEY="):
+                os.environ["GROQ_API_KEY"] = _line.split("=", 1)[1]
+                break
 
 logger = logging.getLogger(__name__)
 

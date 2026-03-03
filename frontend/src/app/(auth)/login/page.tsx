@@ -43,11 +43,11 @@ export default function LoginPage() {
   }
 
   return (
-    <Card className="w-full max-w-md mx-4">
+    <Card className="auth-card w-full max-w-md mx-4 border border-white/10 shadow-2xl shadow-indigo-900/40 backdrop-blur-sm">
       <CardHeader className="text-center">
         <div className="flex items-center justify-center gap-2 mb-4">
           <TrendingDown className="h-8 w-8 text-primary" />
-          <span className="text-2xl font-bold">ChurnGuard</span>
+          <span className="text-2xl font-bold">Loyalto</span>
         </div>
         <CardTitle>Entrar na sua conta</CardTitle>
         <CardDescription>

@@ -42,7 +42,7 @@ export function Sidebar() {
       {/* Logo */}
       <div className="flex items-center gap-2 px-6 py-5 border-b">
         <TrendingDown className="h-6 w-6 text-primary" />
-        <span className="text-lg font-bold">ChurnGuard</span>
+        <span className="text-lg font-bold">Loyalto</span>
       </div>
 
       {/* Nav */}

@@ -1,6 +1,6 @@
-# ChurnGuard – SaaS de Previsão de Churn
+# Loyalto – Transforme dados em lealdade
 
-Sistema completo para previsão de churn com LightGBM, FastAPI e Next.js 14.
+Plataforma de previsão de churn e retenção de clientes com LightGBM, FastAPI e Next.js 14.
 
 ## Stack
 

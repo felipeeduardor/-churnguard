@@ -32,7 +32,7 @@ export default async function RelatoriosPage() {
     <div className="flex flex-col h-full">
       <Header title="Relatórios" subtitle="Análise histórica e exportação de dados" />
       <div className="flex-1 p-6 overflow-auto">
-        <RelatoriosClient predictions={predictions} />
+        <RelatoriosClient predictions={predictions} orgId={orgId ?? ""} />
       </div>
     </div>
   );

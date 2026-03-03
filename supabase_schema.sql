@@ -106,6 +106,25 @@ CREATE POLICY "action_plans_all" ON action_plans
   FOR ALL USING (org_id = get_my_org_id());
 
 -- =============================================
+-- Registration function (bypasses RLS safely)
+-- =============================================
+
+CREATE OR REPLACE FUNCTION register_organization(org_name text, user_name text)
+RETURNS uuid
+LANGUAGE plpgsql
+SECURITY DEFINER
+SET search_path = public
+AS $$
+DECLARE
+  new_org_id uuid;
+BEGIN
+  INSERT INTO organizations (name) VALUES (org_name) RETURNING id INTO new_org_id;
+  INSERT INTO profiles (id, org_id, name, role) VALUES (auth.uid(), new_org_id, user_name, 'admin');
+  RETURN new_org_id;
+END;
+$$;
+
+-- =============================================
 -- Indexes for performance
 -- =============================================
 

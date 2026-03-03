@@ -12,11 +12,13 @@ import {
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Download } from "lucide-react";
+import { FullReportPanel } from "./FullReportPanel";
 import { ScienceEngineerPanel } from "./ScienceEngineerPanel";
 import type { Prediction } from "@/types";
 
 interface Props {
   predictions: Prediction[];
+  orgId: string;
 }
 
 function exportToCsv(predictions: Prediction[]) {
@@ -52,7 +54,7 @@ function exportToCsv(predictions: Prediction[]) {
   URL.revokeObjectURL(url);
 }
 
-export function RelatoriosClient({ predictions }: Props) {
+export function RelatoriosClient({ predictions, orgId }: Props) {
   // Group by upload date for evolution chart
   const byDate: Record<string, { total: number; highRisk: number; avgProb: number }> = {};
 
@@ -80,8 +82,12 @@ export function RelatoriosClient({ predictions }: Props) {
 
   return (
     <div className="space-y-6 max-w-5xl">
-      {/* AI Science & Engineering Panel */}
+      {/* Relatório Completo IA — 3 agentes em paralelo */}
+      <FullReportPanel predictions={predictions} orgId={orgId} />
+
+      {/* Agentes individuais — Cientista e Engenheiro de IA */}
       <ScienceEngineerPanel predictions={predictions} />
+
       {/* Export */}
       <div className="flex items-center justify-between">
         <div>
